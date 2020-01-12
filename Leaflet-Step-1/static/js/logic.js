@@ -71,27 +71,68 @@ function createMarkers(earthquakeData){
       })
     }
   });
+// // Create a legend to display information in the bottom right
+// var legend = L.control({position: 'bottomright'});
 
-  //Set up legend
-  var legend = L.control({ position: "bottomright" });
+// legend.onAdd = function(map) {
 
-  legend.onAdd = function() {
-    var div = L.DomUtil.create("div", "info legend"),
-    categories = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"],
-    labels = [];
+//   var div = L.DomUtil.create('div','info legend'),
+//       magnitudes = [0,1,2,3,4,5],
+//       labels = [];
 
-  for (var i = 0; i< categories.length; i++){
-    div.innerHTML +=
-    labels.push(
-      '<i class= "circle" style="background:'+ markerColor(categories[i]+ '"></i>'+
-      (categories[i] ? categories[i]: '+')));
-  }
+//   div.innerHTML += "<h4 style='margin:4px'>Magnitude</h4>" 
+//   // loop through our density intervals and generate a label for each interval
+//   for (var i=0; i < magnitudes.length; i++){
+//     div.innerHTML +=
+//       '<i style="background:' + getColor(magnitudes[i] + 1) + '"></i> ' +
+//       magnitudes[i] + (magnitudes[i+1]?'&ndash;' + magnitudes[i+1] +'<br>': '+');
+//     }
+//     return div;
+// };
+// legend.addTo(myMap);
 
-    div.innerHTML = labels.join('<br>');
-    return div;
+//Set up legend
+var legend = L.control({ position: "bottomright" });
+legend.onAdd = function() {
+  var div = L.DomUtil.create("div", "info legend");
+  var colors = geojson.options.colors;
+  var labels = [];
+
+  div.innerHTML = legendInfo;
+
+  limits.forEach(function(limit, index) {
+    labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+  });
+
+  div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+  return div;
 };
 
-legend.addTo(map);
+// Adding legend to the map
+// legend.addTo(myMap);
+
+// //Set legend
+// var legend = L.control({position: "bottomright" });
+
+// legend.onAdd = function() {
+//   var div = L.DomUtil.create("div", "info legend"),
+//   categories = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"],
+//   labels = [];
+
+// div.innerHTML += "<h4 style='margin:4px'>Magnitude</h4>" 
+
+// for (var i = 0; i< categories.length; i++){
+//   div.innerHTML +=
+//     '<i style="background:'+ markerColor(categories[i])+ '"></i> '+
+//     (categories[i] ? categories[i]: '+');
+// }
+
+//   div.innerHTML = labels.join('<br>');
+//   return div;
+// };
+
+// legend.addTo(map);
+  
 
   // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
@@ -99,17 +140,3 @@ legend.addTo(map);
 
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson", createMarkers);
 
-
-// queryUrl ="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson" 
-// // Perform a GET request to the query URL
-// d3.json(queryUrl, function(data) {
-//   var features = data.features
-//   console.log(features)
-//   // Once we get a response, send the data.features object to the createFeatures function
-//   for(var i = 0; i<features.length; i++){
-//     var mag = data.features[i].properties.mag
-//     console.log(mag)
-//   }
-
-//   //createFeatures(data.features);
-// });
