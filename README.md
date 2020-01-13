@@ -15,3 +15,11 @@ The USGS is interested in building a new set of tools that will allow them visua
   Earthquakes with higher magnitudes appears larger and darker in color.
 * Popups provides additional information about the earthquake when a marker is clicked.
 * Legend was created providing context for the map
+
+#### Lightmap- layer 
+![1-Logo](Images/lightmap.png)
+
+
+#### Satellite- layer 
+![1-Logo](Images/satellitemap.png)
+
