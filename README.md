@@ -17,9 +17,9 @@ The USGS is interested in building a new set of tools that will allow them visua
 * Legend was created providing context for the map
 
 #### Lightmap- layer 
-![1-Logo](Images/lightmap.png)
+![2-lightmap](Images/lightmap.png)
 
 
 #### Satellite- layer 
-![1-Logo](Images/satellitemap.png)
+![3-satellitemap](Images/satellitemap.png)
 
